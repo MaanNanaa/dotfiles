@@ -1,0 +1,755 @@
+"=============================================================================
+" Maen's IdeaVim Configuration
+"
+" Goal
+"   Build modern Neovim habits while using IntelliJ's Java-aware features.
+"
+" Philosophy
+" ----------------------------------------------------------------------------
+" 1. Follow Vim/Neovim conventions whenever possible.
+" 2. Do not overwrite useful native Vim commands without a strong reason.
+" 3. Use IntelliJ for IDE-aware navigation, refactoring, and code actions.
+" 4. Keep Git primarily in the terminal.
+" 5. Group leader mappings by task.
+" 6. Every mapping must have a clear purpose.
+"=============================================================================
+
+
+"=============================================================================
+" TABLE OF CONTENTS
+"=============================================================================
+"
+"  1. Keybinding Grammar
+"  2. Leader
+"  3. General Options
+"  4. Plugins
+"  5. Native Vim Navigation
+"  6. Code Navigation
+"  7. Find
+"  8. Code
+"  9. Refactor
+" 10. Planned Additions
+"
+"=============================================================================
+
+
+"=============================================================================
+" KEYBINDING GRAMMAR
+"=============================================================================
+"
+" Native Vim
+" ----------------------------------------------------------------------------
+"
+" Ctrl-o
+"   Jump backward through the Vim jump list.
+"
+" Ctrl-i
+"   Jump forward through the Vim jump list.
+"
+" gt
+"   Next tab.
+"
+" gT
+"   Previous tab.
+"
+" Do not remap these to IntelliJ-specific actions.
+"
+"
+" Direct navigation
+" ----------------------------------------------------------------------------
+"
+" gd
+"   Go to declaration or definition.
+"
+" gi
+"   Go to implementation.
+"
+" gr
+"   Show references in a lightweight popup.
+"
+" K
+"   Show documentation.
+"
+"
+" Leader namespaces
+" ----------------------------------------------------------------------------
+"
+" Space
+"   |
+"   |-- f = Find
+"   |-- c = Code
+"   |-- r = Refactor
+"   |-- t = Test          planned
+"   |-- w = Window        planned
+"   `-- o = Tool Window   planned
+"
+"
+" Find
+" ----------------------------------------------------------------------------
+"
+" Space f f    Find File
+" Space f c    Find Class
+" Space f s    Find Symbol
+" Space f g    Find in Project
+" Space f r    Recent Files
+" Space f u    Find Usages
+"
+"
+" Code
+" ----------------------------------------------------------------------------
+"
+" Space c a    Code Actions
+" Space c f    Format Code
+" Space c i    Optimize Imports
+"
+"
+" Refactor
+" ----------------------------------------------------------------------------
+"
+" Space r n    Rename
+" Space r m    Extract Method
+" Space r v    Introduce Variable
+" Space r c    Change Signature
+"
+"=============================================================================
+
+
+"=============================================================================
+" LEADER
+"=============================================================================
+
+let mapleader = " "
+
+
+"=============================================================================
+" GENERAL OPTIONS
+"=============================================================================
+
+" Keep context visible above and below the cursor.
+set scrolloff=8
+
+" Show the current line number.
+set number
+
+" Show surrounding line numbers relative to the cursor.
+set relativenumber
+
+" Search case-insensitively by default.
+set ignorecase
+
+" Become case-sensitive when the search contains uppercase letters.
+set smartcase
+
+" Show matches while typing the search.
+set incsearch
+
+" Highlight all search matches.
+set hlsearch
+
+
+"=============================================================================
+" PLUGINS
+"=============================================================================
+
+" Briefly highlight copied text after a yank.
+Plug 'machakann/vim-highlightedyank'
+
+" Vim-style commenting.
+"
+" gcc
+"   Comment or uncomment the current line.
+"
+" gc{motion}
+"   Comment or uncomment text covered by a motion.
+"
+" Visual mode + gc
+"   Comment or uncomment the selection.
+"
+Plug 'tpope/vim-commentary'
+
+
+"=============================================================================
+" NATIVE VIM NAVIGATION
+"=============================================================================
+"
+" These commands are intentionally not remapped.
+"
+" Ctrl-o
+"   Go to the previous position in the jump list.
+"
+" Ctrl-i
+"   Go to the next position in the jump list.
+"
+" This is the correct Vim replacement for the previously proposed:
+"
+"   gb -> IntelliJ Back
+"
+" Using Ctrl-o and Ctrl-i builds transferable Neovim muscle memory.
+"
+"
+" Other useful native commands
+" ----------------------------------------------------------------------------
+"
+" ''
+"   Jump back to the previous line.
+"
+" ``
+"   Jump back to the exact previous cursor position.
+"
+" gi
+"   Normally returns to the last insert position in Vim.
+"
+" Important:
+"   This configuration intentionally remaps gi to IntelliJ's
+"   Go to Implementation action because implementation navigation is
+"   extremely valuable for Java development.
+"
+" gt
+"   Next tab.
+"
+" gT
+"   Previous tab.
+"
+" Do not use gt for Go to Test.
+"
+"=============================================================================
+
+
+"=============================================================================
+" CODE NAVIGATION
+"=============================================================================
+
+"-----------------------------------------------------------------------------
+" gd
+"
+" Frequency
+"   *****
+"
+" Meaning
+"   g = Go
+"   d = Declaration / Definition
+"
+" Purpose
+"   Navigate to the declaration of the symbol under the cursor.
+"
+" Neovim convention
+"   gd
+"
+" IntelliJ action
+"   GotoDeclaration
+"
+" Common uses
+"   - Open a class declaration
+"   - Open a method declaration
+"   - Open a field declaration
+"   - Open a local variable declaration
+"-----------------------------------------------------------------------------
+
+nmap gd <Action>(GotoDeclaration)
+
+
+"-----------------------------------------------------------------------------
+" gi
+"
+" Frequency
+"   *****
+"
+" Meaning
+"   g = Go
+"   i = Implementation
+"
+" Purpose
+"   Navigate to implementations of the symbol under the cursor.
+"
+" Modern Neovim/LSP convention
+"   gi
+"
+" IntelliJ action
+"   GotoImplementation
+"
+" Common uses
+"   - Find classes implementing an interface
+"   - Find implementations of an interface method
+"   - Find subclasses of an abstract class
+"   - Find overridden implementations
+"
+" Tradeoff
+"   This replaces Vim's native gi command, which returns to the last
+"   insert position. The Java navigation benefit is considered greater.
+"-----------------------------------------------------------------------------
+
+nmap gi <Action>(GotoImplementation)
+
+
+"-----------------------------------------------------------------------------
+" gr
+"
+" Frequency
+"   *****
+"
+" Meaning
+"   g = Go
+"   r = References
+"
+" Purpose
+"   Show usages in a lightweight popup.
+"
+" Modern Neovim/LSP convention
+"   gr
+"
+" IntelliJ action
+"   ShowUsages
+"
+" Common uses
+"   - See where a method is called
+"   - See where a class is used
+"   - See where a field is referenced
+"
+" Difference from Space f u
+"   gr          Lightweight usages popup
+"   Space f u   Full Find Usages results
+"-----------------------------------------------------------------------------
+
+nmap gr <Action>(ShowUsages)
+
+
+"-----------------------------------------------------------------------------
+" K
+"
+" Frequency
+"   ****
+"
+" Purpose
+"   Show documentation for the symbol under the cursor.
+"
+" Neovim/LSP convention
+"   K
+"
+" IntelliJ action
+"   QuickJavaDoc
+"
+" Common uses
+"   - Read JavaDoc
+"   - Review method parameters
+"   - Review return values
+"   - Inspect library documentation
+"-----------------------------------------------------------------------------
+
+nmap K <Action>(QuickJavaDoc)
+
+
+"=============================================================================
+" FIND
+"=============================================================================
+
+"-----------------------------------------------------------------------------
+" Space f f
+"
+" Meaning
+"   f = Find
+"   f = File
+"
+" Purpose
+"   Find and open a file by name.
+"
+" Neovim equivalent
+"   Telescope find_files
+"
+" IntelliJ action
+"   GotoFile
+"-----------------------------------------------------------------------------
+
+nmap <leader>ff <Action>(GotoFile)
+
+
+"-----------------------------------------------------------------------------
+" Space f c
+"
+" Meaning
+"   f = Find
+"   c = Class
+"
+" Purpose
+"   Find and open a class by name.
+"
+" IntelliJ action
+"   GotoClass
+"-----------------------------------------------------------------------------
+
+nmap <leader>fc <Action>(GotoClass)
+
+
+"-----------------------------------------------------------------------------
+" Space f s
+"
+" Meaning
+"   f = Find
+"   s = Symbol
+"
+" Purpose
+"   Find a method, field, class, or another project symbol by name.
+"
+" Neovim equivalent
+"   Telescope lsp_workspace_symbols
+"
+" IntelliJ action
+"   GotoSymbol
+"-----------------------------------------------------------------------------
+
+nmap <leader>fs <Action>(GotoSymbol)
+
+
+"-----------------------------------------------------------------------------
+" Space f g
+"
+" Meaning
+"   f = Find
+"   g = Grep
+"
+" Purpose
+"   Search for text across the project.
+"
+" Neovim equivalent
+"   Telescope live_grep
+"
+" IntelliJ action
+"   FindInPath
+"-----------------------------------------------------------------------------
+
+nmap <leader>fg <Action>(FindInPath)
+
+
+"-----------------------------------------------------------------------------
+" Space f r
+"
+" Meaning
+"   f = Find
+"   r = Recent
+"
+" Purpose
+"   Open recently used files.
+"
+" Neovim equivalent
+"   Telescope oldfiles
+"
+" IntelliJ action
+"   RecentFiles
+"-----------------------------------------------------------------------------
+
+nmap <leader>fr <Action>(RecentFiles)
+
+
+"-----------------------------------------------------------------------------
+" Space f u
+"
+" Meaning
+"   f = Find
+"   u = Usages
+"
+" Purpose
+"   Run the complete Find Usages search.
+"
+" IntelliJ action
+"   FindUsages
+"
+" Difference from gr
+"   gr          Quick references popup
+"   Space f u   Full results and usages tooling
+"-----------------------------------------------------------------------------
+
+nmap <leader>fu <Action>(FindUsages)
+
+
+"=============================================================================
+" CODE
+"=============================================================================
+
+"-----------------------------------------------------------------------------
+" Space c a
+"
+" Frequency
+"   *****
+"
+" Meaning
+"   c = Code
+"   a = Action
+"
+" Purpose
+"   Show code actions, intention actions, and quick fixes.
+"
+" Neovim convention
+"   <leader>ca
+"
+" IntelliJ equivalent
+"   Alt+Enter
+"
+" IntelliJ action
+"   ShowIntentionActions
+"
+" Common uses
+"   - Import a missing class
+"   - Create a missing method
+"   - Fix an inspection warning
+"   - Handle an exception
+"   - Apply an IntelliJ suggestion
+"-----------------------------------------------------------------------------
+
+nmap <leader>ca <Action>(ShowIntentionActions)
+
+
+"-----------------------------------------------------------------------------
+" Space c f
+"
+" Frequency
+"   ****
+"
+" Meaning
+"   c = Code
+"   f = Format
+"
+" Purpose
+"   Reformat the current file or visual selection.
+"
+" IntelliJ action
+"   ReformatCode
+"-----------------------------------------------------------------------------
+
+nmap <leader>cf <Action>(ReformatCode)
+
+
+"-----------------------------------------------------------------------------
+" Space c i
+"
+" Frequency
+"   ****
+"
+" Meaning
+"   c = Code
+"   i = Imports
+"
+" Purpose
+"   Optimize imports.
+"
+" IntelliJ action
+"   OptimizeImports
+"
+" Common uses
+"   - Remove unused imports
+"   - Sort imports
+"   - Clean the import section
+"-----------------------------------------------------------------------------
+
+nmap <leader>ci <Action>(OptimizeImports)
+
+
+"=============================================================================
+" REFACTOR
+"=============================================================================
+
+"-----------------------------------------------------------------------------
+" Space r n
+"
+" Frequency
+"   *****
+"
+" Meaning
+"   r = Refactor
+"   n = Rename
+"
+" Purpose
+"   Safely rename the symbol under the cursor.
+"
+" Neovim/LSP convention
+"   <leader>rn
+"
+" IntelliJ action
+"   RenameElement
+"
+" Works with
+"   - Classes
+"   - Methods
+"   - Fields
+"   - Parameters
+"   - Local variables
+"-----------------------------------------------------------------------------
+
+nmap <leader>rn <Action>(RenameElement)
+
+
+"-----------------------------------------------------------------------------
+" Space r m
+"
+" Frequency
+"   ***
+"
+" Meaning
+"   r = Refactor
+"   m = Method
+"
+" Action name
+"   Extract Method
+"
+" Purpose
+"   Move selected code into a new method.
+"
+" IntelliJ action
+"   ExtractMethod
+"
+" Typical workflow
+"   1. Select code in visual mode.
+"   2. Press Space r m.
+"   3. Enter the new method name.
+"-----------------------------------------------------------------------------
+
+nmap <leader>rm <Action>(ExtractMethod)
+
+
+"-----------------------------------------------------------------------------
+" Space r v
+"
+" Frequency
+"   ****
+"
+" Meaning
+"   r = Refactor
+"   v = Variable
+"
+" Action name
+"   Introduce Variable
+"
+" Purpose
+"   Store the selected expression in a local variable.
+"
+" IntelliJ action
+"   IntroduceVariable
+"
+" Typical workflow
+"   1. Select an expression.
+"   2. Press Space r v.
+"   3. Enter the variable name.
+"-----------------------------------------------------------------------------
+
+nmap <leader>rv <Action>(IntroduceVariable)
+
+
+"-----------------------------------------------------------------------------
+" Space r c
+"
+" Frequency
+"   **
+"
+" Meaning
+"   r = Refactor
+"   c = Change Signature
+"
+" Purpose
+"   Safely modify a method signature and update its callers.
+"
+" IntelliJ action
+"   ChangeSignature
+"
+" Can modify
+"   - Method name
+"   - Return type
+"   - Parameter names
+"   - Parameter types
+"   - Parameter order
+"   - Added or removed parameters
+"-----------------------------------------------------------------------------
+
+nmap <leader>rc <Action>(ChangeSignature)
+
+
+"=============================================================================
+" PLANNED ADDITIONS
+"=============================================================================
+"
+" These mappings are not active yet.
+"
+" We will verify their IntelliJ action IDs before adding them.
+"
+"
+" Code
+" ----------------------------------------------------------------------------
+"
+" Space c g
+"   Generate...
+"
+"   Intended uses
+"     - Constructor
+"     - Getter
+"     - Setter
+"     - Getter and Setter
+"     - equals and hashCode
+"     - toString
+"
+"
+" Space c m
+"   Implement Methods
+"
+"
+" Space c o
+"   Override Methods
+"
+"
+" Space c t
+"   Create Test
+"
+"
+" Test navigation
+" ----------------------------------------------------------------------------
+"
+" Do not map gt to Go to Test.
+"
+" Native Vim already uses:
+"
+"   gt    Next tab
+"   gT    Previous tab
+"
+" Possible future mapping:
+"
+"   Space f t
+"     Find or navigate to the related test/test subject.
+"
+"
+" Testing
+" ----------------------------------------------------------------------------
+"
+" Planned namespace:
+"
+"   Space t ...
+"
+" Possible actions:
+"
+"   Space t t    Run test at cursor
+"   Space t c    Run current test class
+"   Space t r    Rerun last test
+"   Space t d    Debug test at cursor
+"
+"
+" Method navigation inside the current class
+" ----------------------------------------------------------------------------
+"
+" Options to evaluate:
+"
+"   1. IntelliJ File Structure popup
+"   2. Native Vim search
+"   3. Next/previous method actions
+"
+" Do not add an arbitrary g mapping until we confirm that it does not
+" overwrite an important native Vim command.
+"
+"
+" Git
+" ----------------------------------------------------------------------------
+"
+" Keep normal Git operations in the terminal.
+"
+" Use IntelliJ selectively for:
+"
+"   - Diff viewing
+"   - Three-way merge conflicts
+"   - File history
+"   - Local History
+"
+"=============================================================================
