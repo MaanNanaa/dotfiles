@@ -10,7 +10,7 @@ ln -sf "$DOTFILES/vscode/settings.json" \
        "$HOME/Library/Application Support/Code/User/settings.json"
 
 echo "Installing IdeaVim..."
-ln -sf "$DOTFILES/ideavim/ideavimrc" \
+ln -sf "$DOTFILES/ideavim/.ideavimrc" \
        "$HOME/.ideavimrc"
 
 echo "✅ Done!"
