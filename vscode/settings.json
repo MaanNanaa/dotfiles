@@ -1,4 +1,21 @@
 {
+  "workbench.colorTheme": "Darcula (IntelliJ)",
+  "editor.lineNumbers": "relative",
+  "editor.minimap.enabled": false,
+  "workbench.startupEditor": "none",
+  "update.showReleaseNotes": false,
+  "extensions.ignoreRecommendations": true,
+  "chat.viewSessions.orientation": "stacked",
+
+  "files.associations": {
+    "*.sql": "oracle-sql"
+  },
+
+  "sqldeveloper.datagrid.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
+  "sqldeveloper.telemetry.enabled": false,
+  "redhat.telemetry.enabled": false,
+  "telemetry.feedback.enabled": false,
+
   "editor.autoClosingBrackets": "never",
   "editor.autoClosingQuotes": "never",
   "editor.tabCompletion": "off",
