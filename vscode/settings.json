@@ -1,4 +1,8 @@
 {
+  // ------------------------------------------------------------
+  // Appearance
+  // ------------------------------------------------------------
+
   "workbench.colorTheme": "Darcula (IntelliJ)",
   "editor.lineNumbers": "relative",
   "editor.minimap.enabled": false,
@@ -7,18 +11,51 @@
   "extensions.ignoreRecommendations": true,
   "chat.viewSessions.orientation": "stacked",
 
+  // ------------------------------------------------------------
+  // File associations
+  // ------------------------------------------------------------
+
+  // Open .sql files using the Oracle SQL Developer language mode.
   "files.associations": {
     "*.sql": "oracle-sql"
   },
 
+  // ------------------------------------------------------------
+  // Oracle SQL Developer extension
+  // ------------------------------------------------------------
+
   "sqldeveloper.datagrid.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
   "sqldeveloper.telemetry.enabled": false,
+
+  // ------------------------------------------------------------
+  // Telemetry
+  // ------------------------------------------------------------
+
   "redhat.telemetry.enabled": false,
   "telemetry.feedback.enabled": false,
 
+  // ------------------------------------------------------------
+  // Vim-friendly editor behavior
+  // ------------------------------------------------------------
+
+  // Do not automatically insert closing brackets or quotes.
   "editor.autoClosingBrackets": "never",
   "editor.autoClosingQuotes": "never",
+
+  // Do not accept regular IntelliSense suggestions with Tab or Enter.
   "editor.tabCompletion": "off",
   "editor.acceptSuggestionOnEnter": "off",
-  "editor.inlineSuggest.enabled": false
+
+  // Keep inline ghost text enabled so manually requested Copilot
+  // suggestions can be displayed.
+  "editor.inlineSuggest.enabled": true,
+
+  // Keep GitHub Copilot enabled for all supported file types.
+  "github.copilot.enable": {
+    "*": true
+  },
+
+  // Disable Copilot Next Edit Suggestions.
+  // This keeps Copilot focused on suggestions at the current cursor.
+  "github.copilot.nextEditSuggestions.enabled": false
 }

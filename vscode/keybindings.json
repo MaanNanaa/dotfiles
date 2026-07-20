@@ -1,0 +1,47 @@
+[
+  // ------------------------------------------------------------
+  // GitHub Copilot — Vim-style, home-row controls
+  // ------------------------------------------------------------
+
+  {
+    // Request an inline suggestion while VS Code Vim is in Insert mode.
+    "key": "ctrl+l",
+    "command": "editor.action.inlineSuggest.trigger",
+    "when": "editorTextFocus && !editorReadonly && vim.mode == 'Insert'"
+  },
+
+  {
+    // Accept the complete inline suggestion.
+    "key": "ctrl+j",
+    "command": "editor.action.inlineSuggest.commit",
+    "when": "inlineSuggestionVisible && editorTextFocus && !editorReadonly && vim.mode == 'Insert'"
+  },
+
+  {
+    // Accept only the next word.
+    "key": "ctrl+;",
+    "command": "editor.action.inlineSuggest.acceptNextWord",
+    "when": "inlineSuggestionVisible && editorTextFocus && !editorReadonly && vim.mode == 'Insert'"
+  },
+
+  {
+    // Accept only the next line.
+    "key": "ctrl+'",
+    "command": "editor.action.inlineSuggest.acceptNextLine",
+    "when": "inlineSuggestionVisible && editorTextFocus && !editorReadonly && vim.mode == 'Insert'"
+  },
+
+  {
+    // Show the next available suggestion.
+    "key": "ctrl+n",
+    "command": "editor.action.inlineSuggest.showNext",
+    "when": "inlineSuggestionVisible && editorTextFocus && !editorReadonly && vim.mode == 'Insert'"
+  },
+
+  {
+    // Show the previous available suggestion.
+    "key": "ctrl+p",
+    "command": "editor.action.inlineSuggest.showPrevious",
+    "when": "inlineSuggestionVisible && editorTextFocus && !editorReadonly && vim.mode == 'Insert'"
+  }
+]
