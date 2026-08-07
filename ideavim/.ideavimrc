@@ -28,7 +28,8 @@
 "  7. Find
 "  8. Code
 "  9. Refactor
-" 10. Planned Additions
+" 10. GitHub Copilot
+" 11. Planned Additions
 "
 "=============================================================================
 
@@ -110,6 +111,19 @@
 " Space r m    Extract Method
 " Space r v    Introduce Variable
 " Space r c    Change Signature
+"
+"
+" GitHub Copilot — Insert mode
+" ----------------------------------------------------------------------------
+"
+" Ctrl-l       Request Copilot suggestion
+" Ctrl-j       Accept complete suggestion
+" Ctrl-;       Accept next word
+" Ctrl-'       Accept next line
+" Ctrl-n       Next suggestion
+" Ctrl-p       Previous suggestion
+"
+" Esc remains native Vim behavior.
 "
 "=============================================================================
 
@@ -658,6 +672,69 @@ nmap <leader>rv <Action>(IntroduceVariable)
 "-----------------------------------------------------------------------------
 
 nmap <leader>rc <Action>(ChangeSignature)
+
+
+"=============================================================================
+" GITHUB COPILOT
+"=============================================================================
+"
+" Goal
+" ----------------------------------------------------------------------------
+"
+" Keep Copilot completely keyboard-driven while in Insert mode.
+"
+" The mappings intentionally match the VS Code Copilot mappings so the same
+" muscle memory works across IntelliJ, VS Code, and eventually Neovim.
+"
+"
+" Ctrl-l
+"   Request an inline Copilot suggestion.
+"
+" Ctrl-j
+"   Accept the entire suggestion.
+"
+" Ctrl-;
+"   Accept only the next word.
+"
+" Ctrl-'
+"   Accept only the next line.
+"
+" Ctrl-n
+"   Show the next available suggestion.
+"
+" Ctrl-p
+"   Show the previous available suggestion.
+"
+" Esc
+"   Not remapped.
+"
+"   Native IdeaVim behavior remains responsible for leaving Insert mode.
+"
+"-----------------------------------------------------------------------------
+
+
+" Request an inline completion.
+imap <C-l> <Action>(CallInlineCompletionAction)
+
+
+" Accept the entire inline completion.
+imap <C-j> <Action>(InsertInlineCompletionAction)
+
+
+" Accept only the next word.
+imap <C-;> <Action>(InsertInlineCompletionWordAction)
+
+
+" Accept only the next line.
+imap <C-'> <Action>(InsertInlineCompletionLineAction)
+
+
+" Show the next available inline completion.
+imap <C-n> <Action>(NextInlineCompletionSuggestionAction)
+
+
+" Show the previous available inline completion.
+imap <C-p> <Action>(PrevInlineCompletionSuggestionAction)
 
 
 "=============================================================================
