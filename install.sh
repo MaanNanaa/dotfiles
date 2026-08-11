@@ -2,7 +2,7 @@
 
 set -e
 
-OTFILES="$HOME/dotfiles"
+DOTFILES="$HOME/dotfiles"
 VSCODE_USER_DIR="$HOME/Library/Application Support/Code/User"
 
 echo "Installing VS Code settings..."
