@@ -1,8 +1,25 @@
+[core]
+    pager = delta
+
 [diff]
-	tool = meld
+    tool = meld
+
 [difftool "meld"]
-	cmd = meld \"\" \"\"
+    cmd = meld "$LOCAL" "$REMOTE"
+
 [merge]
-	tool = meld
+    tool = meld
+    conflictstyle = zdiff3
+
 [mergetool "meld"]
-	cmd = meld \"\" \"\" \"\" --output=\"\"
+    cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output="$MERGED"
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    side-by-side = true
+    line-numbers = true
+    light = false
+    syntax-theme = Dracula
