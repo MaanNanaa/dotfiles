@@ -2,7 +2,7 @@
 
 set -e
 
-DOTFILES="$HOME/dotfiles"
+OTFILES="$HOME/dotfiles"
 VSCODE_USER_DIR="$HOME/Library/Application Support/Code/User"
 
 echo "Installing VS Code settings..."
@@ -18,5 +18,10 @@ ln -sf "$DOTFILES/vscode/keybindings.json" \
 echo "Installing IdeaVim..."
 ln -sf "$DOTFILES/ideavim/.ideavimrc" \
        "$HOME/.ideavimrc"
+
+echo "Installing Git config..."
+
+ln -sf "$DOTFILES/git/.gitconfig" \
+       "$HOME/.gitconfig"
 
 echo "✅ Done!"
