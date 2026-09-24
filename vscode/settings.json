@@ -1,10 +1,21 @@
 {
+
+  // ------------------------------------------------------------
+  // Line numbers
+  // ------------------------------------------------------------
+
+  // VSCodeVim does not support :set relativenumber / :set rnu.
+  // Switch between relative and normal line numbers by
+  // commenting/uncommenting the settings below.
+  "editor.lineNumbers": "relative",
+  // "editor.lineNumbers": "on",
+
+
   // ------------------------------------------------------------
   // Appearance
   // ------------------------------------------------------------
 
   "workbench.colorTheme": "Darcula (IntelliJ)",
-  "editor.lineNumbers": "relative",
   "editor.minimap.enabled": false,
   "workbench.startupEditor": "none",
   "update.showReleaseNotes": false,
@@ -44,7 +55,7 @@
 
   // Do not accept regular IntelliSense suggestions with Tab or Enter.
   "editor.tabCompletion": "off",
-  "editor.acceptSuggestionOnEnter": "off",
+  "editor.acceptSuggestionOnEnter": "on",
 
   // Keep inline ghost text enabled so manually requested Copilot
   // suggestions can be displayed.
