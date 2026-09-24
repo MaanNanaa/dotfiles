@@ -16,6 +16,8 @@
   // ------------------------------------------------------------
 
   "workbench.colorTheme": "Darcula (IntelliJ)",
+  "editor.fontFamily": "'JetBrains Mono', Menlo, Monaco, monospace",
+  "editor.fontSize": 16,
   "editor.minimap.enabled": false,
   "workbench.startupEditor": "none",
   "update.showReleaseNotes": false,
