@@ -146,7 +146,7 @@ set scrolloff=8
 set number
 
 " Show surrounding line numbers relative to the cursor.
-set relativenumber
+"set relativenumber
 
 " Search case-insensitively by default.
 set ignorecase

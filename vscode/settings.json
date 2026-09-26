@@ -3,14 +3,14 @@
   // ------------------------------------------------------------
   // Line numbers
   // ------------------------------------------------------------
+  
+  // VS Code controls line-number behavior through editor.lineNumbers.
+  // Keep normal line numbers enabled by default.
+  // To use relative line numbers, swap the commented lines below.
 
-  // VSCodeVim does not support :set relativenumber / :set rnu.
-  // Switch between relative and normal line numbers by
-  // commenting/uncommenting the settings below.
-  "editor.lineNumbers": "relative",
-  // "editor.lineNumbers": "on",
-
-
+  "editor.lineNumbers": "on",
+  // "editor.lineNumbers": "relative",
+  
   // ------------------------------------------------------------
   // Appearance
   // ------------------------------------------------------------
