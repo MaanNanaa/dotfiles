@@ -70,5 +70,45 @@
 
   // Disable Copilot Next Edit Suggestions.
   // This keeps Copilot focused on suggestions at the current cursor.
-  "github.copilot.nextEditSuggestions.enabled": false
+  "github.copilot.nextEditSuggestions.enabled": false,
+
+  // ------------------------------------------------------------
+  // VSCodeVim — mirror of .ideavimrc
+  // ------------------------------------------------------------
+
+  "vim.leader": "<space>",
+  "vim.scroll": 8,
+  "vim.ignorecase": true,
+  "vim.smartcase": true,
+  "vim.incsearch": true,
+  "vim.hlsearch": true,
+
+  "vim.normalModeKeyBindingsNonRecursive": [
+    { "before": ["g", "d"], "commands": ["editor.action.revealDefinition"] },
+    { "before": ["g", "i"], "commands": ["editor.action.goToImplementation"] },
+    { "before": ["g", "r"], "commands": ["editor.action.referenceSearch.trigger"] },
+    { "before": ["K"], "commands": ["editor.action.showHover"] },
+
+    { "before": ["<leader>", "f", "f"], "commands": ["workbench.action.quickOpen"] },
+    { "before": ["<leader>", "f", "c"], "commands": ["workbench.action.showAllSymbols"] },
+    { "before": ["<leader>", "f", "s"], "commands": ["workbench.action.gotoSymbol"] },
+    { "before": ["<leader>", "f", "g"], "commands": ["workbench.action.findInFiles"] },
+    { "before": ["<leader>", "f", "r"], "commands": ["workbench.action.openRecent"] },
+    { "before": ["<leader>", "f", "u"], "commands": ["references-view.findReferences"] },
+
+    { "before": ["<leader>", "c", "a"], "commands": ["editor.action.quickFix"] },
+    { "before": ["<leader>", "c", "f"], "commands": ["editor.action.formatDocument"] },
+    { "before": ["<leader>", "c", "i"], "commands": ["editor.action.organizeImports"] },
+
+    { "before": ["<leader>", "r", "n"], "commands": ["editor.action.rename"] },
+    { "before": ["<leader>", "r", "m"], "commands": ["java.action.refactorExtractMethod"] },
+    { "before": ["<leader>", "r", "v"], "commands": ["java.action.refactorExtractVariable"] },
+    { "before": ["<leader>", "r", "c"], "commands": ["java.action.refactorChangeSignature"] }
+  ],
+
+  "vim.visualModeKeyBindingsNonRecursive": [
+    { "before": ["<leader>", "r", "m"], "commands": ["java.action.refactorExtractMethod"] },
+    { "before": ["<leader>", "r", "v"], "commands": ["java.action.refactorExtractVariable"] }
+  ]
+
 }
