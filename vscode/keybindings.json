@@ -44,4 +44,10 @@
     "command": "editor.action.inlineSuggest.showPrevious",
     "when": "inlineSuggestionVisible && editorTextFocus && !editorReadonly && vim.mode == 'Insert'"
   }
+{
+    // Example: remove(int index) -> remove(Object o)
+    "key": "ctrl+s",
+    "command": "showNextParameterHint",
+    "when": "parameterHintsVisible"
+}
 ]
